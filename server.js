@@ -227,7 +227,7 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
-// 404 handler for undefined routes
+// 404 handler for undefined
 
 app.use((req, res) => {
     res.status(404).json({
