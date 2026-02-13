@@ -1,10 +1,9 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
 
-
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -13,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/userdb')
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-
+// User Schema
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -122,7 +121,7 @@ app.post('/users', async (req, res) => {
         res.status(201).json({
             success: true,
             message: 'User created successfully',
-            // data: userResponse
+            data: userResponse  // 👈 FIXED: Added data back (you had it commented out)
         });
     } catch (error) {
         res.status(500).json({
@@ -226,8 +225,7 @@ app.delete('/users/:id', async (req, res) => {
     }
 });
 
-// 404 handler for undefined
-
+// 404 handler for undefined routes
 app.use((req, res) => {
     res.status(404).json({
         success: false,
