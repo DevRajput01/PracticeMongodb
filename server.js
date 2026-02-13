@@ -1,10 +1,10 @@
-// server.js
+
 const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/userdb')
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// User Schema
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -32,7 +32,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// User Model
 const User = mongoose.model('User', userSchema);
 
 // ============= ROUTES ============= //
